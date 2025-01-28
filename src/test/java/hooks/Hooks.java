@@ -13,13 +13,17 @@ public class Hooks {
     public void setUp() {
         // Ensure WebDriverManager automatically sets up the ChromeDriver
         WebDriverManager.chromedriver().setup();
-        
+
         // Fetch user-data-dir from environment variable
         String chromeUserDataDir = System.getenv("CHROME_USER_DATA_DIR");
 
         // Set ChromeOptions with headless and user-data-dir arguments
         org.openqa.selenium.chrome.ChromeOptions options = new org.openqa.selenium.chrome.ChromeOptions();
-        options.addArguments("--headless", "--disable-gpu", "--user-data-dir=" + chromeUserDataDir);
+        options.addArguments("--headless",
+                "--disable-gpu",
+                "--no-sandbox", // Bypass sandboxing (common for CI environments)
+                "--remote-debugging-port=9222",
+                "--user-data-dir=" + chromeUserDataDir);
 
         // Initialize ChromeDriver with options
         driver = new ChromeDriver(options);
