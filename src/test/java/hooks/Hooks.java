@@ -11,8 +11,16 @@ public class Hooks {
 
     @Before
     public void setUp() {
+        // Ensure ChromeDriver uses the unique user-data-dir from environment
+        String chromeUserDataDir = System.getenv("CHROME_USER_DATA_DIR");
+
+        // Set up ChromeDriver options to use the unique user-data-dir
+        org.openqa.selenium.chrome.ChromeOptions options = new org.openqa.selenium.chrome.ChromeOptions();
+        options.addArguments("--headless", "--disable-gpu", "--user-data-dir=" + chromeUserDataDir);
+
+        // Setup WebDriver with ChromeDriver and options
         WebDriverManager.chromedriver().setup();
-        driver = new ChromeDriver();
+        driver = new ChromeDriver(options);
         driver.manage().window().maximize();
     }
 

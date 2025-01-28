@@ -23,19 +23,23 @@ jobs:
         distribution: 'temurin'
         cache: maven
     
-    - name: Set up Google Chrome
+    - name: Set up Google Chrome and Dependencies
       run: |
         sudo apt update
         sudo apt install -y google-chrome-stable
+        
+        # Install ChromeDriver
+        sudo apt install -y chromedriver
     
     - name: Create a unique user-data-dir for headless browser
       run: |
         mkdir -p /tmp/chrome-data
         export CHROME_USER_DATA_DIR="/tmp/chrome-data-$(date +%s)"
+        echo "CHROME_USER_DATA_DIR=$CHROME_USER_DATA_DIR" >> $GITHUB_ENV
     
     - name: Build with Maven
       run: mvn install
     
     - name: Run headless browser tests (if applicable)
       run: |
-        google-chrome --headless --user-data-dir="$CHROME_USER_DATA_DIR" --remote-debugging-port=9222 http://localhost:8080
+        google-chrome --headless --disable-gpu --remote-debugging-port=9222 --user-data-dir="$CHROME_USER_DATA_DIR" http://localhost:8080
