@@ -42,4 +42,4 @@ jobs:
     
     - name: Run headless browser tests (if applicable)
       run: |
-        google-chrome --headless --disable-gpu --no-sandbox --remote-debugging-port=9222 --user-data-dir="$CHROME_USER_DATA_DIR" http://localhost:8080
+        mvn test
