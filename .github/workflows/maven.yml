@@ -13,29 +13,15 @@ jobs:
       uses: actions/setup-java@v1
       with:
         java-version: 11
-    - name: Kill existing Chrome processes
+    - name: Install Chromium
       run: |
-        pkill chrome || true
-    - name: Install Google Chrome
+        sudo apt-get update
+        sudo apt-get install -y chromium-browser
+        sudo apt-get install -y libnss3 libgdk-pixbuf2.0-0
+    - name: Set up environment for Selenium with Headless Chrome
       run: |
-        # Install Google Chrome
-        wget -q -O - https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb > google-chrome.deb
-        sudo dpkg -i google-chrome.deb
-        sudo apt-get install -f
-        
-        # Generate a unique directory for user data
-        USER_DATA_DIR="/tmp/chrome_user_data_$(date +%s)"
-        mkdir -p $USER_DATA_DIR
-        
-        # Start Google Chrome with a unique user data directory and no-sandbox flag
-        google-chrome-stable --headless --disable-gpu --remote-debugging-port=9222 --user-data-dir=$USER_DATA_DIR --no-sandbox &
-        
-        # Wait for Chrome to start and be ready
-        sleep 10
-    - name: Check running Chrome processes
-      run: ps aux | grep chrome
+        echo "CHROME_BIN=/usr/bin/chromium-browser" >> $GITHUB_ENV
+        echo "CHROME_PATH=/usr/bin/chromium-browser" >> $GITHUB_ENV
+        echo "DISPLAY=:99" >> $GITHUB_ENV  # Set display for headless mode
     - name: Build with Maven
       run: mvn test --file pom.xml
-    - name: Kill Chrome after tests
-      run: |
-        pkill chrome || true
