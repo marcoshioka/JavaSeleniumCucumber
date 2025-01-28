@@ -23,13 +23,10 @@ jobs:
         distribution: 'temurin'
         cache: maven
     
-    - name: Set up Google Chrome and Dependencies
+    - name: Set up Google Chrome
       run: |
         sudo apt update
         sudo apt install -y google-chrome-stable
-        
-        # Install ChromeDriver
-        sudo apt install -y chromedriver
     
     - name: Create a unique user-data-dir for headless browser
       run: |
