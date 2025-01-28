@@ -1,4 +1,4 @@
-name: Java Selenium Cucumber Tests
+name: Java Selenium Cucumber Tests Without Selenium Standalone
 
 on:
   push:
@@ -11,12 +11,6 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
-
-    services:
-      selenium:
-        image: selenium/standalone-chrome:latest
-        ports:
-          - 4444:4444
 
     steps:
     - name: Checkout code
@@ -38,9 +32,17 @@ jobs:
     - name: Install dependencies
       run: mvn clean install --quiet
 
+    - name: Install Chrome browser
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y google-chrome-stable
+
+    - name: Verify Chrome installation
+      run: google-chrome --version
+
     - name: Run tests
       env:
-        SELENIUM_REMOTE_URL: http://localhost:4444/wd/hub
+        SELENIUM_REMOTE_URL: http://localhost:4444/wd/hub # Not needed; tests will run locally
       run: mvn test
 
     - name: Archive test results
@@ -49,15 +51,3 @@ jobs:
       with:
         name: test-results
         path: target/surefire-reports/*.xml
-
-    - name: Notify test status
-      if: failure()
-      uses: dawidd6/action-send-mail@v3
-      with:
-        server_address: smtp.example.com
-        server_port: 587
-        username: ${{ secrets.SMTP_USERNAME }}
-        password: ${{ secrets.SMTP_PASSWORD }}
-        subject: 'Test Failure in Selenium Workflow'
-        to: 'team@example.com'
-        body: 'One or more tests failed. Please check the attached logs.'
