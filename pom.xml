@@ -56,6 +56,9 @@
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-surefire-plugin</artifactId>
         <version>3.5.2</version> <!-- Latest stable version -->
+        <configuration>
+          <argLine>-Xmx1024m</argLine> <!-- Increase memory as needed -->
+        </configuration>
       </plugin>
     </plugins>
   </build>
