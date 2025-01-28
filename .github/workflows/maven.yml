@@ -3,7 +3,7 @@ on:
   push:
     branches: [ main ]
   pull_request:
-    branches: [ main]
+    branches: [ main ]
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -27,7 +27,15 @@ jobs:
         USER_DATA_DIR="/tmp/chrome_user_data_$(date +%s)"
         mkdir -p $USER_DATA_DIR
         
-        # Start Google Chrome with a unique user data directory
-        google-chrome-stable --headless --disable-gpu --remote-debugging-port=9222 --user-data-dir=$USER_DATA_DIR &
+        # Start Google Chrome with a unique user data directory and no-sandbox flag
+        google-chrome-stable --headless --disable-gpu --remote-debugging-port=9222 --user-data-dir=$USER_DATA_DIR --no-sandbox &
+        
+        # Wait for Chrome to start and be ready
+        sleep 10
+    - name: Check running Chrome processes
+      run: ps aux | grep chrome
     - name: Build with Maven
       run: mvn test --file pom.xml
+    - name: Kill Chrome after tests
+      run: |
+        pkill chrome || true
