@@ -22,16 +22,6 @@ jobs:
         java-version: '11'
         distribution: 'temurin'
 
-    - name: Cache Maven dependencies
-      uses: actions/cache@v3
-      with:
-        path: ~/.m2/repository
-        key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
-        restore-keys: ${{ runner.os }}-maven
-
-    - name: Install dependencies
-      run: mvn clean install --quiet
-
     - name: Install Chrome browser
       run: |
         sudo apt-get update
@@ -40,10 +30,15 @@ jobs:
     - name: Verify Chrome installation
       run: google-chrome --version
 
+    - name: Install dependencies
+      run: mvn clean install --quiet
+
     - name: Run tests
       env:
-        SELENIUM_REMOTE_URL: http://localhost:4444/wd/hub # Not needed; tests will run locally
-      run: mvn test
+        DISPLAY: :99.0
+      run: |
+        Xvfb :99 -ac &
+        mvn test
 
     - name: Archive test results
       if: always()
