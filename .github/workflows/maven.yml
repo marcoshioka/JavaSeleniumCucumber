@@ -17,11 +17,6 @@ jobs:
         image: selenium/standalone-chrome:latest
         ports:
           - 4444:4444
-        options: >
-          --health-cmd='curl -f http://localhost:4444 || exit 1'
-          --health-interval=5s
-          --health-timeout=2s
-          --health-retries=3
 
     steps:
     - name: Checkout code
