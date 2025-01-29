@@ -19,7 +19,8 @@ public class Hooks {
 
         // Set ChromeOptions with headless and user-data-dir arguments
         org.openqa.selenium.chrome.ChromeOptions options = new org.openqa.selenium.chrome.ChromeOptions();
-        options.addArguments("--headless",
+        options.addArguments(
+                "--headless",
                 "--disable-gpu",
                 "--no-sandbox", // Bypass sandboxing (common for CI environments)
                 "--remote-debugging-port=9222",

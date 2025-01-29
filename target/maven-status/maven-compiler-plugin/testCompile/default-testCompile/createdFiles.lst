@@ -1,5 +1,5 @@
-pages/GoogleHomePage.class
-stepDefinitions/GoogleSearchSteps.class
+pages/BankUserPage.class
 com/example/AppTest.class
 hooks/Hooks.class
 Runners/TestRunner.class
+stepDefinitions/BankUserSteps.class
