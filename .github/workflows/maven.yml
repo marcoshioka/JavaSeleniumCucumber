@@ -46,15 +46,30 @@ jobs:
     - name: Run headless browser tests (if applicable)
       run: |
         mvn test
-
-    - name: Build test report
-      uses: simple-elf/allure-report-action@v1.7
-      if: always()
+    
+    - name: Install Allure
+      run: |
+        curl -o allure-2.20.1.tgz -L https://github.com/allure-framework/allure2/releases/download/2.20.1/allure-2.20.1.tgz
+        tar -xzf allure-2.20.1.tgz
+        sudo mv allure-2.20.1 /opt/allure
+        echo "/opt/allure/bin" >> $GITHUB_PATH
+    
+    - name: Generate Allure Report
+      run: |
+        /opt/allure/bin/allure generate build/allure-results --clean -o allure-history
+    
+    - name: Upload Allure Results
+      uses: actions/upload-artifact@v4
       with:
-        gh_pages: gh-pages
-        allure_history: allure-history
-        allure_results: build/allure-results
-
+        name: allure-results
+        path: build/allure-results
+    
+    - name: Upload Allure Report
+      uses: actions/upload-artifact@v4
+      with:
+        name: allure-report
+        path: allure-history
+    
     - name: Publish test report
       uses: peaceiris/actions-gh-pages@v3
       if: always()
