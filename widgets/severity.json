@@ -1,1 +1,1 @@
-[]
+[{"uid":"c0f13eda41496609","name":"Login for a successful user registred","time":{"start":1738118111185,"stop":1738118116135,"duration":4950},"status":"passed","severity":"normal"},{"uid":"1776a8eb0baa2a51","name":"Login for a successful user registred","time":{"start":1738118111119,"stop":1738118116142,"duration":5023},"status":"passed","severity":"normal"}]
