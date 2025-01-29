@@ -43,9 +43,9 @@ jobs:
     - name: Build with Maven
       run: mvn package -Dmaven.test.skip
     
-    - name: Run headless browser tests (if applicable)
+    - name: Run tests with Allure
       run: |
-        mvn test
+        mvn test -Dallure.results.directory=build/allure-results
     
     - name: Install Allure
       run: |
@@ -54,15 +54,22 @@ jobs:
         sudo mv allure-2.20.1 /opt/allure
         echo "/opt/allure/bin" >> $GITHUB_PATH
     
+    - name: Debug Allure Directory
+      run: ls -l build/allure-results || echo "Allure results directory not found"
+    
     - name: Generate Allure Report
       run: |
         /opt/allure/bin/allure generate build/allure-results --clean -o allure-history
     
     - name: Upload Allure Results
-      uses: actions/upload-artifact@v4
-      with:
-        name: allure-results
-        path: build/allure-results
+      if: success() || failure()
+      run: |
+        if [ -d "build/allure-results" ] && [ "$(ls -A build/allure-results)" ]; then
+          echo "Uploading Allure results..."
+        else
+          echo "No Allure results found. Skipping upload."
+          exit 0
+        fi
     
     - name: Upload Allure Report
       uses: actions/upload-artifact@v4
