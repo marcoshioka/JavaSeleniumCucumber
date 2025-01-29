@@ -1,5 +1,0 @@
-pages/BankUserPage.class
-com/example/AppTest.class
-hooks/Hooks.class
-Runners/TestRunner.class
-stepDefinitions/BankUserSteps.class
