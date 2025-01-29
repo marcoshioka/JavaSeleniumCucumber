@@ -10,9 +10,9 @@
   <url>http://maven.apache.org</url>
 
   <!-- Define the version of Allure you want to use via the allure.version property -->
-  <properties>
+  <!-- <properties>
     <allure.version>2.24.0</allure.version>
-  </properties>
+  </properties> -->
 
   <dependencies>
     <!-- Selenium -->
@@ -30,19 +30,19 @@
       <scope>import</scope>
     </dependency>
 
-    <!-- <dependency>
+    <dependency>
       <groupId>io.qameta.allure</groupId>
       <artifactId>allure-cucumber7-jvm</artifactId>
       <version>2.29.1</version>
       <scope>test</scope>
-    </dependency> -->
+    </dependency>
     
-    <dependency>
+    <!-- <dependency>
       <groupId>io.qameta.allure</groupId>
       <artifactId>allure-junit-platform</artifactId>
       <version>2.29.1</version>
       <scope>test</scope>
-    </dependency>
+    </dependency> -->
 
     <!-- Cucumber -->
     <dependency>
