@@ -133,5 +133,5 @@ This project is licensed under the MIT License - see the `LICENSE` file for deta
 
 ## **Contact**
 For questions or feedback, please contact:
-- **Your Name**: marcosribeirohioka@gmail.com
+- **Email**: marcosribeirohioka@gmail.com
 - **GitHub**: marcoshioka
