@@ -64,7 +64,7 @@ The workflow is defined in `.github/workflows/ci.yml`.
 After the CI pipeline completes, an Allure report will be generated. You can view the generated report via GitHub Pages at the following URL:
 
 ```bash
-https://marcoshioka.github.io/JavaSeleniumCucumber/allure-history/index.html
+https://marcoshioka.github.io/JavaSeleniumCucumber
 ```
 
 The report will be available on the `gh-pages` branch.
@@ -130,3 +130,8 @@ The `.github/workflows/ci.yml` file defines the CI pipeline. It sets up Java 11,
 ## License
 
 This project is licensed under the MIT License - see the `LICENSE` file for details.
+
+## **Contact**
+For questions or feedback, please contact:
+- **Your Name**: marcosribeirohioka@gmail.com
+- **GitHub**: marcoshioka
