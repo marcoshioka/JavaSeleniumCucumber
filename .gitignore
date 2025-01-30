@@ -1,0 +1,51 @@
+# Ignore Maven build output
+/target/
+/build/
+
+# Ignore IntelliJ IDEA project files
+.idea/
+*.iml
+
+# Ignore Eclipse project files
+.project
+.classpath
+.settings/
+
+# Ignore NetBeans project files
+nbproject/
+
+# Ignore OS-specific files
+.DS_Store
+Thumbs.db
+
+# Ignore log files
+*.log
+
+# Ignore Allure results and reports
+/allure-results/
+/allure-history/
+
+# Ignore the generated JAR file (if any)
+*.jar
+
+# Ignore Maven wrapper files (if used)
+.mvn/
+!/.mvn/wrapper/maven-wrapper.jar
+
+# Ignore user-specific Maven settings
+.settings/
+
+# Ignore Java test output
+*.test/
+
+# Ignore IDE-specific files (for VSCode, Sublime, etc.)
+.vscode/
+
+# Ignore local configuration files (e.g., if using certain tools)
+*.swp
+*.swo
+
+# Ignore temporary files
+*.tmp
+*.bak
+*.swp

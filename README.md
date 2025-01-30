@@ -18,7 +18,7 @@ Alternatively, these dependencies will be handled by GitHub Actions during CI.
 ### Clone the repository
 
 ```bash
-git clone https://github.com/yourusername/JavaSeleniumCucumber.git
+git clone https://github.com/marcoshioka/JavaSeleniumCucumber.git
 cd JavaSeleniumCucumber
 ```
 
@@ -64,7 +64,7 @@ The workflow is defined in `.github/workflows/ci.yml`.
 After the CI pipeline completes, an Allure report will be generated. You can view the generated report via GitHub Pages at the following URL:
 
 ```bash
-https://yourusername.github.io/JavaSeleniumCucumber/allure-history/index.html
+https://marcoshioka.github.io/JavaSeleniumCucumber/allure-history/index.html
 ```
 
 The report will be available on the `gh-pages` branch.
