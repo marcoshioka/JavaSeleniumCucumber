@@ -1,5 +1,5 @@
 "Status","Start Time","Stop Time","Duration in ms","Parent Suite","Suite","Sub Suite","Test Class","Test Method","Name","Description"
-"passed","Tue Apr 15 12:39:39 UTC 2025","Tue Apr 15 12:39:44 UTC 2025","5310","","User Registration","","Login for a successful user registred","","Login for a successful user registred","  As a potential user of BugBank
+"passed","Wed Jan 29 02:44:41 UTC 2025","Wed Jan 29 02:44:47 UTC 2025","6150","","","","","","Login for a successful user registred",""
+"passed","Wed Apr 16 12:39:50 UTC 2025","Wed Apr 16 12:39:56 UTC 2025","5190","","User Registration","","Login for a successful user registred","","Login for a successful user registred","  As a potential user of BugBank
   I want to register on the platform
   So that I can access and use its features"
-"passed","Wed Jan 29 02:44:41 UTC 2025","Wed Jan 29 02:44:47 UTC 2025","6150","","","","","","Login for a successful user registred",""
